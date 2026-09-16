@@ -1,0 +1,43 @@
+:root{--sidebar:260px;--panel:240px;--line:#e5e7eb;--ink:#111827;--muted:#6b7280}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#eef0f3}
+button,input{font:inherit}button{border:0;border-radius:9px;padding:9px 12px;background:#f3f4f6;color:#111827}
+button:active{transform:translateY(1px)}.primary{background:#111827;color:#fff;font-weight:650}.primaryTool{background:#111827;color:#fff}
+.tool.active,.bgBtn.active{background:#111827;color:#fff}.danger{color:#b91c1c}
+#app{display:flex;height:100%}#sidebar{width:var(--sidebar);flex:0 0 var(--sidebar);background:#fff;border-right:1px solid var(--line);padding:14px;display:flex;flex-direction:column;overflow:auto}
+.brand{display:flex;gap:8px;align-items:center;font-size:18px;padding:6px 4px 16px}.brand span{margin-left:auto;font-size:11px;color:#6b7280}
+#newNotebook{width:100%;margin-bottom:18px}.sideTitle,.panelTitle{font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.06em}
+.itemRow{display:flex;gap:3px;margin:3px 0}.notebook,.pageItem{flex:1;text-align:left;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:transparent}
+.notebook.active,.pageItem.active{background:#e5e7eb;font-weight:650}.deleteBtn{width:31px;padding:5px;background:transparent;color:#9ca3af;font-size:20px}
+.sideFooter{margin-top:auto;display:flex;gap:8px}.sideFooter button{flex:1}
+main{min-width:0;flex:1;display:flex;flex-direction:column}#topbar{height:54px;flex:0 0 54px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 10px}
+#breadcrumbs{font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.topActions{margin-left:auto;display:flex;align-items:center;gap:5px}.status{font-size:12px;color:#6b7280}.icon{background:transparent;font-size:20px}
+#workspace{display:flex;min-height:0;flex:1}#pagePanel{width:var(--panel);flex:0 0 var(--panel);background:#fafafa;border-right:1px solid var(--line);padding:10px;overflow:auto}
+.panelHead{display:flex;justify-content:space-between;gap:6px;padding-bottom:9px}.headBtns{display:flex;gap:4px}.smallPrimary{padding:7px 9px}
+#editor{min-width:0;flex:1;display:flex;flex-direction:column;background:#f3f4f6}.pageHeader{background:#fff;border-bottom:1px solid var(--line);padding:9px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.pageHeader input{border:0;outline:0;font-size:18px;font-weight:650;min-width:150px;flex:1}.pageActions{display:flex;gap:4px}.pageActions .tool{padding:7px 9px}
+.backgroundButtons{display:flex;gap:3px}.bgBtn{font-size:12px;padding:7px 8px}
+.canvasWrap{position:relative;flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;background:#fff;overscroll-behavior:contain;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.canvasWrap.ruled{background-color:#fff;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,#d7dee7 32px)}
+.canvasWrap.grid{background-color:#fff;background-image:linear-gradient(#e5e7eb 1px,transparent 1px),linear-gradient(90deg,#e5e7eb 1px,transparent 1px);background-size:32px 32px}
+.canvasWrap.dot{background-color:#fff;background-image:radial-gradient(#cbd5e1 1px,transparent 1px);background-size:24px 24px}
+.canvasWrap.pdfMode{background:#73777d}
+.canvasWrap::after{content:"";display:block;width:var(--page-width,100%);height:var(--page-height,1100px);margin:0 auto;pointer-events:none}.canvasWrap canvas{position:absolute;left:50%;top:0;transform:translateX(-50%);display:block}.canvasWrap #pdfCanvas{z-index:1}.canvasWrap #noteCanvas{z-index:5;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#textLayer{position:absolute;left:50%;top:0;transform:translateX(-50%);z-index:7;pointer-events:none}
+.textBox{position:absolute;pointer-events:auto;min-height:28px;padding:3px 5px;background:rgba(255,255,255,.86);border:1px dashed #94a3b8;border-radius:5px;outline:0;user-select:text;-webkit-user-select:text}
+.imageBox{position:absolute;z-index:7;pointer-events:none}.imageBox img{display:block;max-width:100%;border:1px solid #94a3b8}
+#pencilHint{position:absolute;z-index:10;top:12px;left:50%;transform:translateX(-50%);background:rgba(17,24,39,.72);color:#fff;border-radius:16px;padding:6px 12px;font-size:12px;pointer-events:none;opacity:.85}
+#pencilHint.hidden{display:none}
+#toolbar{background:#fff;border-top:1px solid var(--line);padding:8px;display:flex;gap:7px;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.colorTool,.sizeTool{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:13px}.colorTool input{width:34px;height:30px;padding:0;border:0;background:transparent}.sizeTool input{width:100px}
+.emptyState{margin:auto;text-align:center;padding:30px}.emptyIcon{font-size:45px}.emptyState p{color:#6b7280}
+body.focus #sidebar,body.focus #pagePanel{display:none}
+body.focus #editor{background:#f3f4f6;min-width:0}
+body.focus #topbar{background:#fff;color:var(--ink);border-color:var(--line)}
+body.focus .pageHeader{background:#fff;color:var(--ink);border-bottom:1px solid var(--line)}body.focus .pageHeader input{background:transparent;color:var(--ink)}body.focus #toolbar{border-top:1px solid var(--line)}
+.pdfNav{position:sticky;top:8px;z-index:20;width:max-content;margin:8px auto -44px auto;display:flex;align-items:center;gap:8px;background:rgba(17,24,39,.92);color:#fff;border-radius:20px;padding:4px 8px;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.pdfNav button{background:transparent;color:#fff;padding:4px 10px;font-size:22px;line-height:1}.pdfNav button:disabled{opacity:.35}.pdfNav span{font-size:12px;min-width:92px;text-align:center}
+body.focus .pdfNav{top:8px}
+dialog{border:0;border-radius:14px;padding:20px;width:min(360px,90vw);box-shadow:0 20px 60px rgba(0,0,0,.25)}dialog::backdrop{background:rgba(0,0,0,.35)}
+#nameForm{display:grid;gap:12px}#nameForm input{padding:11px;border:1px solid #d1d5db;border-radius:9px}.dialogActions{display:flex;justify-content:flex-end;gap:8px}
+@media(max-width:650px){:root{--sidebar:100%;--panel:190px}#sidebar{position:absolute;z-index:30;height:100%;box-shadow:12px 0 30px rgba(0,0,0,.15)}#sidebar.hidden{display:none}.status{display:none}.backgroundButtons{width:100%;order:5}}

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#111827">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+<title>DeepuNotes V3.3</title>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <div class="brand">✎ <strong>DeepuNotes</strong><span>V3.3</span></div>
+    <button id="newNotebook" class="primary">＋ New Notebook</button>
+    <div class="sideTitle">Notebooks</div>
+    <div id="notebookList"></div>
+    <div class="sideFooter">
+      <button id="backupBtn">⇩ Backup</button>
+      <button id="restoreBtn">⇧ Restore</button>
+      <input id="backupInput" type="file" accept=".deepunotes,.json" hidden>
+    </div>
+  </aside>
+
+  <main>
+    <header id="topbar">
+      <button id="sidebarToggle" class="icon">☰</button>
+      <div id="breadcrumbs">DeepuNotes</div>
+      <div class="topActions">
+        <button id="undo" class="tool">↶</button>
+        <button id="redo" class="tool">↷</button>
+        <button id="focusMode" class="tool">⛶ Focus</button>
+        <span id="saveStatus" class="status">Saved locally</span>
+      </div>
+    </header>
+
+    <section id="workspace">
+      <aside id="pagePanel">
+        <div class="panelHead">
+          <div><div class="panelTitle">Pages</div><div id="sectionName">General</div></div>
+          <div class="headBtns">
+            <button id="newPage" class="smallPrimary">＋</button>
+            <button id="importPdf" class="smallPrimary">PDF</button>
+            <input id="pdfInput" type="file" accept="application/pdf" hidden>
+          </div>
+        </div>
+        <div id="pageList"></div>
+      </aside>
+
+      <section id="editor">
+        <div id="emptyState">
+          <div class="emptyIcon">📓</div>
+          <h1>DeepuNotes V3.3</h1>
+          <p>Apple Pencil notes, PDF annotation and local storage.</p>
+          <button id="emptyNew" class="primary">Create Notebook</button>
+        </div>
+
+        <div id="pageView" hidden>
+          <div class="pageHeader">
+            <input id="pageTitle" value="Untitled Page" aria-label="Page title">
+            <div class="pageActions">
+              <button id="moveUp" class="tool">↑</button>
+              <button id="moveDown" class="tool">↓</button>
+              <button id="deletePage" class="tool danger">🗑</button>
+            </div>
+            <div class="backgroundButtons">
+              <button data-bg="blank" class="bgBtn active">Blank</button>
+              <button data-bg="ruled" class="bgBtn">Ruled</button>
+              <button data-bg="grid" class="bgBtn">Grid</button>
+              <button data-bg="dot" class="bgBtn">Dot</button>
+            </div>
+          </div>
+
+          <div id="canvasWrap" class="canvasWrap blank">
+            <div id="pdfNav" class="pdfNav" hidden><button id="pdfPrev">‹</button><span id="pdfPageLabel">PDF page 1 / 1</span><button id="pdfNext">›</button></div>
+            <canvas id="pdfCanvas"></canvas>
+            <canvas id="noteCanvas"></canvas>
+            <div id="textLayer"></div>
+            <div id="pencilHint">✎ Apple Pencil writes • finger scrolls</div>
+          </div>
+
+          <div id="toolbar">
+            <button data-tool="pen" class="tool active">✒ Pen</button>
+            <button data-tool="highlighter" class="tool">🖍 Highlighter</button>
+            <button data-tool="eraser" class="tool">⌫ Eraser</button>
+            <button data-tool="text" class="tool">T Text</button>
+            <button id="addImage" class="tool">▧ Image</button>
+            <input id="imageInput" type="file" accept="image/*" hidden>
+            <label class="colorTool">Color <input id="color" type="color" value="#111827"></label>
+            <label class="sizeTool">Size <input id="size" type="range" min="1" max="18" value="3"></label>
+            <button id="clearPage" class="tool danger">Clear ink</button>
+            <button id="exportPdf" class="tool primaryTool">⇩ Export PDF</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<dialog id="nameDialog">
+  <form method="dialog" id="nameForm">
+    <h3 id="dialogTitle">New Notebook</h3>
+    <input id="nameInput" required maxlength="80" autocomplete="off">
+    <div class="dialogActions">
+      <button value="cancel">Cancel</button>
+      <button id="dialogOK" class="primary" value="default">Create</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
